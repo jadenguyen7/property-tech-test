@@ -1,8 +1,13 @@
 // import { FC } from "react";
-// import { Card } from '../../components/Card/Card';
+import { Card } from '../../components/Card/Card'
 
 const Listings = () => {
-	return <p>Listings</p>;
-};
+	return (
+		<>
+			<div>Listings:</div>
+			<Card />
+		</>
+	)
+}
 
-export default Listings;
+export default Listings
