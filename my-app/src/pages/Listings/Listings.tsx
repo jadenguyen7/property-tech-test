@@ -1,10 +1,11 @@
 // import { FC } from "react";
 import { Card } from '../../components/Card/Card'
+import styles from './Listings.module.css'
 
 const Listings = () => {
 	return (
 		<>
-			<div>Listings:</div>
+			<h1>Listings:</h1>
 			<Card />
 		</>
 	)
