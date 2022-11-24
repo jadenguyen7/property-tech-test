@@ -1,15 +1,16 @@
 import { setupWorker, rest } from 'msw'
+import Listings from '../pages/Listings/Listings'
 import { Listing } from '../requests/listings.types'
 
-const getListingResponseStatusActive: Listing = {
-	id: 1,
-	status: true,
-}
+// const getListingStatusActive: Listing = {
+// 	id: 1,
+// 	status: true,
+// }
 
-const getListingResponseStatusUnactive: Listing = {
-	id: 1,
-	status: false,
-}
+// const getListingStatusUnactive: Listing = {
+// 	id: 1,
+// 	status: false,
+// }
 
 export const getAllListingsHandler = [
 	rest.get('/listings', (_, res, ctx) => {
@@ -22,7 +23,7 @@ export const getAllListingsHandler = [
 					address: '29, Blake Road, London, Greater London E27 6NP',
 					bedrooms: '4 bedrooms',
 					price: '£2,250,000',
-					status: null,
+					status: false,
 				},
 				{
 					id: 2,
@@ -31,7 +32,7 @@ export const getAllListingsHandler = [
 					address: '15, Peakdale Road, Manchester, M43 8PS',
 					bedrooms: '7 bedrooms',
 					price: '£2,140,800',
-					status: null,
+					status: false,
 				},
 				{
 					id: 3,
@@ -40,7 +41,7 @@ export const getAllListingsHandler = [
 					address: '7, Savil Road, Leeds, L08 3AH',
 					bedrooms: '4 bedrooms',
 					price: '£1,940,800',
-					status: null,
+					status: false,
 				},
 				{
 					id: 4,
@@ -49,7 +50,7 @@ export const getAllListingsHandler = [
 					address: '12, Albion Drive, London, SW9 2UH',
 					bedrooms: '5 bedrooms',
 					price: '£2,830,800',
-					status: null,
+					status: false,
 				},
 				{
 					id: 5,
@@ -58,37 +59,54 @@ export const getAllListingsHandler = [
 					address: '84, Sandringham Avenue, Manchester, M43 9AW',
 					bedrooms: '7 bedrooms',
 					price: '£3,190,800',
-					status: null,
+					status: false,
 				},
 			])
 		)
 	}),
 ]
 
-export const getListingResponseStatusActiveHandler = [
-	rest.get<Listing>('/listings', (_, res, ctx) => {
-		return res(ctx.json(getListingResponseStatusActive))
-	}),
-]
+// export const getListingStatusActiveHandler = [
+// 	rest.get<Listing>('/listings', (_, res, ctx) => {
+// 		return res(ctx.json(getListingStatusActive))
+// 	}),
+// ]
 
-export const getListingResponseStatusUnactiveHandler = [
-	rest.get<Listing>('/listings', (_, res, ctx) => {
-		return res(ctx.json(getListingResponseStatusUnactive))
-	}),
-]
+// export const getListingStatusUnactiveHandler = [
+// 	rest.get<Listing>('/listings', (_, res, ctx) => {
+// 		return res(ctx.json(getListingStatusUnactive))
+// 	}),
+// ]
+
+// export const putListingHandler = [
+// 	rest.put<Listing>(`/listings`, async (request, response, context) => {
+// 		const body: Listing = await request.json()
+// 		return response(context.json(body))
+// 	}),
+// ]
 
 export const putListingHandler = [
-	rest.put<Listing>('/listings', async (request, response, context) => {
-		const body: Listing = await request.json();
-		return response(context.json(body));
-	})
+	rest.put<Listing>('/listings', async (req, res, ctx) => {
+		const { id, image, address, bedrooms, price, status }: Listing =
+			await req.json()
+		return res(
+			ctx.json({
+				id: id,
+				image: image,
+				address: address,
+				bedrooms: bedrooms,
+				price: price,
+				status: status,
+			})
+		)
+	}),
 ]
 
 const worker = setupWorker(
 	...getAllListingsHandler,
-	...getListingResponseStatusActiveHandler,
-	...getListingResponseStatusUnactiveHandler,
-	...putListingHandler,
+	// ...getListingStatusActiveHandler,
+	// ...getListingStatusUnactiveHandler
+	...putListingHandler
 )
 
 worker.start()
