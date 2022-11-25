@@ -1,16 +1,5 @@
 import { setupWorker, rest } from 'msw'
-import Listings from '../pages/Listings/Listings'
 import { Listing } from '../requests/listings.types'
-
-// const getListingStatusActive: Listing = {
-// 	id: 1,
-// 	status: true,
-// }
-
-// const getListingStatusUnactive: Listing = {
-// 	id: 1,
-// 	status: false,
-// }
 
 export const getAllListingsHandler = [
 	rest.get('/listings', (_, res, ctx) => {
@@ -66,25 +55,6 @@ export const getAllListingsHandler = [
 	}),
 ]
 
-// export const getListingStatusActiveHandler = [
-// 	rest.get<Listing>('/listings', (_, res, ctx) => {
-// 		return res(ctx.json(getListingStatusActive))
-// 	}),
-// ]
-
-// export const getListingStatusUnactiveHandler = [
-// 	rest.get<Listing>('/listings', (_, res, ctx) => {
-// 		return res(ctx.json(getListingStatusUnactive))
-// 	}),
-// ]
-
-// export const putListingHandler = [
-// 	rest.put<Listing>(`/listings`, async (request, response, context) => {
-// 		const body: Listing = await request.json()
-// 		return response(context.json(body))
-// 	}),
-// ]
-
 export const putListingHandler = [
 	rest.put<Listing>('/listings', async (req, res, ctx) => {
 		const { id, image, address, bedrooms, price, status }: Listing =
@@ -102,11 +72,6 @@ export const putListingHandler = [
 	}),
 ]
 
-const worker = setupWorker(
-	...getAllListingsHandler,
-	// ...getListingStatusActiveHandler,
-	// ...getListingStatusUnactiveHandler
-	...putListingHandler
-)
+const worker = setupWorker(...getAllListingsHandler, ...putListingHandler)
 
 worker.start()

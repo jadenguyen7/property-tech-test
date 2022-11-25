@@ -79,7 +79,11 @@ const Card: FC = () => {
 			{properties.map((property: PropertyProps, i) => {
 				return (
 					<div className={styles.cardContainer} key={i}>
-						<div className={styles.card}>
+						<div
+							className={`${styles.card} ${
+								!property.status ? styles.expiredStyle : ''
+							}`}
+						>
 							<img
 								src={property.image}
 								alt="property"
