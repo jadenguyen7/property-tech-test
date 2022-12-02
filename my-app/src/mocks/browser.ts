@@ -1,5 +1,6 @@
-import { setupWorker, rest } from 'msw'
-import { Listing } from '../requests/listings.types'
+import { setupWorker, rest } from 'msw';
+import { setupServer } from 'msw/lib/node';
+import { Listing } from '../requests/listings.types';
 
 export const getAllListingsHandler = [
 	rest.get('/listings', (_, res, ctx) => {
@@ -17,7 +18,7 @@ export const getAllListingsHandler = [
 				{
 					id: 2,
 					image:
-						'https://www.frontgaterealestate.com/wp-content/uploads/2020/09/g_properties.jpg',
+						'https://media.istockphoto.com/id/682432560/photo/stunning-luxury-home-exterior-at-sunset.jpg?s=612x612&w=0&k=20&c=NApF0vAI8wppLkNX73wWRxXUO2nyLHCB6peu38k2rtI=',
 					address: '15, Peakdale Road, Manchester, M43 8PS',
 					bedrooms: '7 bedrooms',
 					price: '£2,140,800',
@@ -51,14 +52,14 @@ export const getAllListingsHandler = [
 					status: false,
 				},
 			])
-		)
+		);
 	}),
-]
+];
 
 export const putListingHandler = [
 	rest.put<Listing>('/listings', async (req, res, ctx) => {
 		const { id, image, address, bedrooms, price, status }: Listing =
-			await req.json()
+			await req.json();
 		return res(
 			ctx.json({
 				id: id,
@@ -68,10 +69,17 @@ export const putListingHandler = [
 				price: price,
 				status: status,
 			})
-		)
+		);
 	}),
-]
+];
 
-const worker = setupWorker(...getAllListingsHandler, ...putListingHandler)
+export const handlers = [...getAllListingsHandler, ...putListingHandler];
 
-worker.start()
+console.log('LOG', process.env); // use this variable node_env "test" - tests are running
+
+// const worker = setupWorker(...getAllListingsHandler, ...putListingHandler);
+// worker.start();
+
+// - if I am in the browser setupWorker, worker.start()
+// - if this code is being excecuted by node or jest dont setupWorker, dont worker.start()
+//
