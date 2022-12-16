@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Card } from './Card';
 import { setupServer } from 'msw/node';
 import { getAllListingsHandler, putListingHandler } from '../../mocks/browser';
 
+// only want to setupServer in testing env, dont want it running in prod
 const server = setupServer(...getAllListingsHandler, ...putListingHandler);
 
 beforeAll(() => server.listen());
@@ -21,44 +23,48 @@ describe('Card component', () => {
 		// need to add assertion
 	});
 
-	// test('populated data correctly', async () => {
-	// 	render(<Card />);
-	// 	await waitForCardLoaded();
+	test('populated data correctly', async () => {
+		render(<Card />);
+		await waitForCardLoaded();
 
-	// 	expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(
-	// 		/Property 1/
-	// 	);
-	// 	expect(screen.getByRole('img', { name: 'property-0' })).toBeInTheDocument();
-	// 	expect(screen.getByRole('heading', { level: 4 })).toHaveTextContent(
-	// 		/29, Blake Road/
-	// 	);
-	// 	expect(screen.getAllByTestId('bedrooms-for-property-0')).toHaveTextContent(
-	// 		/4 bedrooms/
-	// 	);
-	// 	expect(screen.getAllByTestId('price-of-property-0')).toHaveTextContent(
-	// 		/£2,250,000/
-	// 	);
-	// 	const checkbox = screen.getByRole('checkbox', {
-	// 		name: 'status',
-	// 	});
-	// 	expect(checkbox).not.toBeChecked();
-	// });
+		expect(screen.getAllByRole('heading', { level: 3 })[0]).toHaveTextContent(
+			/Property 1/
+		);
+		expect(screen.getByRole('img', { name: 'property-0' })).toBeInTheDocument();
+		expect(screen.getAllByRole('heading', { level: 4 })[0]).toHaveTextContent(
+			/29, Blake Road/
+		);
+		expect(screen.getByTestId('bedrooms-for-property-0')).toHaveTextContent(
+			/4 bedrooms/
+		);
+		expect(screen.getByTestId('price-of-property-0')).toHaveTextContent(
+			/£2,250,000/
+		);
+		const checkbox = screen.getAllByRole('checkbox', {
+			name: 'status',
+		})[0];
+		expect(checkbox).not.toBeChecked();
+	});
 
-	// test('can toggle status', async () => {
-	// 	render(<Card />);
-	// 	await waitForCardLoaded();
+	test('can toggle status', async () => {
+		render(<Card />);
+		await waitForCardLoaded();
 
-	// 	const checkbox = screen.getByRole('checkbox', {
-	// 		name: 'status',
-	// 	});
-	// 	expect(checkbox).not.toBeChecked();
-	// 	expect(screen.getAllByTestId('status-property-0')).toHaveTextContent(
-	// 		/Expired/
-	// 	);
-	// 	await userEvent.click(checkbox);
-	// 	expect(checkbox).toBeChecked();
-	// 	expect(screen.getAllByTestId('status-property-0')).toHaveTextContent(
-	// 		/Active/
-	// 	);
-	// });
+		const checkbox = screen.getAllByRole('checkbox', {
+			name: 'status',
+		})[0];
+
+		expect(checkbox).not.toBeChecked();
+		expect(screen.getByTestId('status-property-0')).toHaveTextContent(
+			/Expired/
+		);
+
+		userEvent.click(checkbox);
+
+		await waitFor(() => {
+			expect(checkbox).toBeChecked();
+		});
+
+		expect(screen.getByTestId('status-property-0')).toHaveTextContent(/Active/);
+	});
 });

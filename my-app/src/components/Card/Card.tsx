@@ -1,15 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Listing } from '../../requests/listings.types';
 import styles from './Card.module.css';
-import { getAllListings, putListing } from '../../requests/listings';
-import Listings from '../../pages/Listings/Listings';
-
-// GET /api/properties - return the full list of listings
-
-// GET /api/properties/id - return specific listing matching id
-
-// an array of the id's
-// a function that passes in the id and updates the status property by making a post request
+import { putListing } from '../../requests/listings';
 
 type PropertyProps = {
 	id: number;
@@ -21,13 +13,13 @@ type PropertyProps = {
 };
 
 const Card: FC = () => {
-	const [properties, setProperties] = useState<Listing[]>([]);
+	let [properties, setProperties] = useState<Listing[]>([]);
+	const [isShowActive, setIsShowActive] = useState(true);
 
 	const handleStatusUpdate = async (listing: Listing) => {
 		if (!listing.id || listing === null) {
 			return;
 		}
-		console.log('STATUS BEFORE', listing.status);
 
 		const data = await putListing({
 			id: listing.id,
@@ -72,12 +64,43 @@ const Card: FC = () => {
 		getListings();
 	}, []);
 
-	// console.log('PROPERTIES', properties);
-
 	return (
 		<>
-			{properties.map((property: PropertyProps, i) => {
-				return (
+			<div className="filter">
+				<input
+					type="radio"
+					id="active"
+					name="status"
+					value="active"
+					checked={isShowActive}
+					onClick={() => setIsShowActive(true)}
+				/>
+				<label htmlFor="active">Active</label>
+				<input
+					type="radio"
+					id="expiredFilter"
+					name="status"
+					value="expired"
+					checked={!isShowActive}
+					onChange={() => setIsShowActive(false)}
+				/>
+				<label htmlFor="expired">Expired</label>
+			</div>
+
+			{properties
+				.filter((property) => {
+					if (isShowActive) {
+						return property.status;
+					} else {
+						return !property.status;
+						// if (property.status === false) {
+						// 	return true
+						// } else {
+						// 	return false
+						// }
+					}
+				})
+				.map((property: PropertyProps, i) => (
 					<div className={styles.cardContainer} key={i}>
 						<div
 							data-testid={`card-${i}`}
@@ -111,8 +134,7 @@ const Card: FC = () => {
 							</div>
 						</div>
 					</div>
-				);
-			})}
+				))}
 		</>
 	);
 };

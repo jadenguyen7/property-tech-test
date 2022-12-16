@@ -1,6 +1,6 @@
 // import { FC } from "react";
-import { Card } from '../../components/Card/Card'
-import styles from './Listings.module.css'
+import { Card } from '../../components/Card/Card';
+import styles from './Listings.module.css';
 
 const Listings = () => {
 	return (
@@ -8,7 +8,7 @@ const Listings = () => {
 			<h1>Listings:</h1>
 			<Card />
 		</>
-	)
-}
+	);
+};
 
-export default Listings
+export default Listings;

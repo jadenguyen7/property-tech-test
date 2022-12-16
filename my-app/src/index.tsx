@@ -8,12 +8,8 @@ import { setupWorker } from 'msw';
 import { getAllListingsHandler, putListingHandler } from './mocks/browser';
 
 if (process.env.NODE_ENV === 'development') {
-	const worker = setupWorker(...getAllListingsHandler, ...putListingHandler);
+	const worker = setupWorker(...getAllListingsHandler, ...putListingHandler); // worker only works in browser env, tests are in node env
 	worker.start();
-}
-
-if (process.env.NODE_ENV === 'test') {
-	require('./mocks/browser');
 }
 
 const root = ReactDOM.createRoot(

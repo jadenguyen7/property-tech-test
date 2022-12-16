@@ -13,7 +13,7 @@ export const getAllListingsHandler = [
 					address: '29, Blake Road, London, Greater London E27 6NP',
 					bedrooms: '4 bedrooms',
 					price: '£2,250,000',
-					status: false,
+					status: true,
 				},
 				{
 					id: 2,
@@ -72,14 +72,3 @@ export const putListingHandler = [
 		);
 	}),
 ];
-
-export const handlers = [...getAllListingsHandler, ...putListingHandler];
-
-console.log('LOG', process.env); // use this variable node_env "test" - tests are running
-
-// const worker = setupWorker(...getAllListingsHandler, ...putListingHandler);
-// worker.start();
-
-// - if I am in the browser setupWorker, worker.start()
-// - if this code is being excecuted by node or jest dont setupWorker, dont worker.start()
-//
