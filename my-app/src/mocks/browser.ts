@@ -1,5 +1,4 @@
-import { setupWorker, rest } from 'msw';
-import { setupServer } from 'msw/lib/node';
+import { rest } from 'msw';
 import { Listing } from '../requests/listings.types';
 
 export const getAllListingsHandler = [
@@ -40,7 +39,7 @@ export const getAllListingsHandler = [
 					address: '12, Albion Drive, London, SW9 2UH',
 					bedrooms: '5 bedrooms',
 					price: '£2,830,800',
-					status: false,
+					status: true,
 				},
 				{
 					id: 5,
