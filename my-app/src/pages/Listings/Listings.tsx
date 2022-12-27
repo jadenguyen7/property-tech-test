@@ -5,7 +5,7 @@ import styles from './Listings.module.css';
 const Listings = () => {
 	return (
 		<>
-			<h1>Listings:</h1>
+			<h1 className={styles.title}>Listings</h1>
 			<Card />
 		</>
 	);

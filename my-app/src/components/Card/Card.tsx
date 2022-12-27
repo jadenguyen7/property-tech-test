@@ -66,7 +66,7 @@ const Card: FC = () => {
 
 	return (
 		<>
-			<div className="filter">
+			<div className={styles.filter}>
 				<input
 					type="radio"
 					id="active"
@@ -75,7 +75,9 @@ const Card: FC = () => {
 					checked={isShowActive}
 					onClick={() => setIsShowActive(true)}
 				/>
-				<label htmlFor="active">Active</label>
+				<label htmlFor="active" className={styles.label}>
+					Active
+				</label>
 				<input
 					type="radio"
 					id="expiredFilter"
@@ -84,7 +86,9 @@ const Card: FC = () => {
 					checked={!isShowActive}
 					onChange={() => setIsShowActive(false)}
 				/>
-				<label htmlFor="expired">Expired</label>
+				<label htmlFor="expired" className={styles.label}>
+					Expired
+				</label>
 			</div>
 
 			{properties

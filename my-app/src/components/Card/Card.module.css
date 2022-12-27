@@ -1,4 +1,4 @@
-.cardContainer {
+.cardContainer, .filter {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -32,4 +32,12 @@
 	height: 300px;
 	border-top-left-radius: 9px;
 	border-bottom-left-radius: 9px;
+}
+
+.label {
+	padding-left: 4px;
+}
+
+.filter {
+	padding-bottom: 20px;
 }
