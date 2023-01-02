@@ -1,4 +1,3 @@
-// import { FC } from "react";
 import { Card } from '../../components/Card/Card';
 import styles from './Listings.module.css';
 

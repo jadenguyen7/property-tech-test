@@ -9,6 +9,6 @@ test('routing works and Listings page renders', () => {
 			<App />
 		</BrowserRouter>
 	);
-	const listingsPage = screen.getByText('Listings:');
+	const listingsPage = screen.getByText('Listings');
 	expect(listingsPage).toBeInTheDocument();
 });
