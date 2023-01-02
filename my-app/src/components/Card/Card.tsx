@@ -73,14 +73,14 @@ const Card: FC = () => {
 					name="status"
 					value="active"
 					checked={isShowActive}
-					onClick={() => setIsShowActive(true)}
+					onChange={() => setIsShowActive(true)}
 				/>
 				<label htmlFor="active" className={styles.label}>
 					Active
 				</label>
 				<input
 					type="radio"
-					id="expiredFilter"
+					id="expired"
 					name="status"
 					value="expired"
 					checked={!isShowActive}
@@ -107,7 +107,7 @@ const Card: FC = () => {
 				.map((property: PropertyProps, i) => (
 					<div className={styles.cardContainer} key={i}>
 						<div
-							data-testid={`card-${i}`}
+							data-testid={`card-${property.id}`}
 							className={`${styles.card} ${
 								!property.status ? styles.expiredStyle : ''
 							}`}
@@ -115,24 +115,26 @@ const Card: FC = () => {
 							<img
 								src={property.image}
 								alt="property"
-								aria-label={`property-${i}`}
+								aria-label={`property-${property.id}`}
 								className={styles.image}
 							/>
 							<div className={styles.container}>
-								<h3>Property {i + 1}</h3>
+								<h3>Property {property.id}</h3>
 								<h4>{property.address}</h4>
-								<p data-testid={`bedrooms-for-property-${i}`}>
+								<p data-testid={`bedrooms-for-property-${property.id}`}>
 									{property.bedrooms}
 								</p>
-								<p data-testid={`price-of-property-${i}`}>{property.price}</p>
+								<p data-testid={`price-of-property-${property.id}`}>
+									{property.price}
+								</p>
 								<input
 									type="checkbox"
-									aria-label="status"
-									id="status"
+									aria-label={`checkbox-status-property-${property.id}`}
+									id={`checkbox-status-property-${property.id}`}
 									checked={property.status}
 									onChange={() => handleStatusUpdate(property)}
 								/>
-								<p data-testid={`status-property-${i}`}>
+								<p data-testid={`status-property-${property.id}`}>
 									{property.status ? 'Active' : 'Expired'}
 								</p>
 							</div>

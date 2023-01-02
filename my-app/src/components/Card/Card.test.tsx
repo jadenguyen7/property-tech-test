@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Card } from './Card';
 import { setupServer } from 'msw/node';
@@ -13,14 +13,17 @@ afterAll(() => server.close());
 
 describe('Card component', () => {
 	const waitForCardLoaded = async () => {
-		const card = await screen.findByTestId('card-0');
+		const card = await screen.findByTestId('card-1');
 		expect(card).toBeInTheDocument();
 	};
 
 	test('renders', async () => {
 		render(<Card />);
 		await waitForCardLoaded();
-		// need to add assertion
+
+		expect(
+			screen.getAllByRole('heading', { level: 3, name: 'Property 1' })
+		).toBeTruthy();
 	});
 
 	test('populated data correctly', async () => {
@@ -30,41 +33,39 @@ describe('Card component', () => {
 		expect(screen.getAllByRole('heading', { level: 3 })[0]).toHaveTextContent(
 			/Property 1/
 		);
-		expect(screen.getByRole('img', { name: 'property-0' })).toBeInTheDocument();
+		expect(screen.getByRole('img', { name: 'property-1' })).toBeInTheDocument();
 		expect(screen.getAllByRole('heading', { level: 4 })[0]).toHaveTextContent(
 			/29, Blake Road/
 		);
-		expect(screen.getByTestId('bedrooms-for-property-0')).toHaveTextContent(
+		expect(screen.getByTestId('bedrooms-for-property-1')).toHaveTextContent(
 			/4 bedrooms/
 		);
-		expect(screen.getByTestId('price-of-property-0')).toHaveTextContent(
+		expect(screen.getByTestId('price-of-property-1')).toHaveTextContent(
 			/£2,250,000/
 		);
-		const checkbox = screen.getAllByRole('checkbox', {
-			name: 'status',
-		})[0];
-		expect(checkbox).not.toBeChecked();
+		const checkbox = screen.getByRole('checkbox', {
+			name: 'checkbox-status-property-1',
+		});
+		expect(checkbox).toBeChecked();
 	});
 
 	test('can toggle status', async () => {
 		render(<Card />);
 		await waitForCardLoaded();
 
-		const checkbox = screen.getAllByRole('checkbox', {
-			name: 'status',
-		})[0];
+		const card = screen.getByTestId('card-1');
+		expect(card).toBeInTheDocument();
 
-		expect(checkbox).not.toBeChecked();
-		expect(screen.getByTestId('status-property-0')).toHaveTextContent(
-			/Expired/
-		);
-
-		userEvent.click(checkbox);
-
-		await waitFor(() => {
-			expect(checkbox).toBeChecked();
+		const checkbox = screen.getByRole('checkbox', {
+			name: 'checkbox-status-property-1',
 		});
 
-		expect(screen.getByTestId('status-property-0')).toHaveTextContent(/Active/);
+		expect(checkbox).toBeChecked();
+		expect(screen.getByTestId('status-property-1')).toHaveTextContent(/Active/);
+
+		await userEvent.click(checkbox);
+		await userEvent.click(screen.getByRole('radio', { name: 'Expired' }));
+
+		expect(card).toBeInTheDocument();
 	});
 });
