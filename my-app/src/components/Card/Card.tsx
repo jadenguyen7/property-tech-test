@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Listing } from '../../requests/listings.types';
 import styles from './Card.module.css';
-import { putListing } from '../../requests/listings';
+import { getAllListings, putListing } from '../../requests/listings';
 
 type PropertyProps = {
 	id: number;
@@ -44,22 +44,10 @@ const Card: FC = () => {
 	// to stop the infinitive loop
 	useEffect(() => {
 		const getListings = async () => {
-			const response = await fetch('/listings');
-			const data = await response.json();
+			const response = await getAllListings();
+			const data = await response;
 
 			setProperties(data);
-
-			// try {
-			// 	const response = await getAllListings()
-			// 	const data = await response.json()
-
-			// 	setProperties(data)
-			// 	setStatus(data.status)
-			// } catch (error) {
-			// 	if (error) {
-			// 		return 'There was an error getting listings' + error
-			// 	}
-			// }
 		};
 		getListings();
 	}, []);
