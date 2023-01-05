@@ -28,8 +28,8 @@
 }
 
 .image {
-	width: 400px;
-	height: 300px;
+	width: 55%;
+	height: 100%;
 	border-top-left-radius: 9px;
 	border-bottom-left-radius: 9px;
 }

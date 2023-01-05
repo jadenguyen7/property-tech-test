@@ -1,25 +1,31 @@
 ### Summary
 
-This is a simple React application that will enable agents to manage property listings. The agent will be able to:
+This is a simple React application that enables agents to manage property listings. The agent will be able to:
 
 - View a list of properties for sale
 - Mark an individual property listing as expired
 - See which properties are `active` and which have been `expired`.
 
+For the purpose of this project, I have fetched mock data using Mock Service Worker. The application is thoroughly tested with Jest tests.
+
 ### Scripts
 
 To start the app, navigate to `/my-app` and run:
 
-### `npm start`
+## `npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 To run tests:
 
-### `npm test`
+## `npm test`
 
-## Improvements
+### Improvements
 
 If I had more time to do this project, I would add error handling for cases such as API fetching failures. I would return a human readable message that made it clear to the user what the failure was.
 
-I would style the page further. I would also make the app responsive so that it is functional on all device screen sizes.
+I would style the page further to show more of my css skills.
+
+I would make the app responsive so that it is functional on all device screen sizes.
+
+I would also build a view with no filter so that the agent can see both active and expired listings together.
