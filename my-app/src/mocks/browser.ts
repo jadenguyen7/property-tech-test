@@ -21,7 +21,7 @@ export const getAllListingsHandler = [
 					address: '15, Peakdale Road, Manchester, M43 8PS',
 					bedrooms: '7 bedrooms',
 					price: '£2,140,800',
-					status: false,
+					status: true,
 				},
 				{
 					id: 3,
@@ -48,6 +48,50 @@ export const getAllListingsHandler = [
 					address: '84, Sandringham Avenue, Manchester, M43 9AW',
 					bedrooms: '7 bedrooms',
 					price: '£3,190,800',
+					status: false,
+				},
+				{
+					id: 6,
+					image:
+						'https://i0.wp.com/abouthouse.co.uk/wp-content/uploads/2020/08/st-johns-wood-nw8.jpg?fit=1600%2C1077&ssl=1',
+					address: '52, Palmer Road, Newcastle, N13 3PO',
+					bedrooms: '6 bedrooms',
+					price: '£2,110,800',
+					status: true,
+				},
+				{
+					id: 7,
+					image:
+						'https://media.gq-magazine.co.uk/photos/5d139d663bedf26c6edb6eae/master/pass/Playboy-Mansion-GQ-12Jan16_getty_b.jpg',
+					address: '77, Wakefield Avenue, London, W17 9AN',
+					bedrooms: '7 bedrooms',
+					price: '£5,170,800',
+					status: false,
+				},
+				{
+					id: 8,
+					image: 'https://bcdhomes.com/wp-content/uploads/2018/10/97A7640.jpg',
+					address: '45, Pettern Road, Kent, K16 2DW',
+					bedrooms: '5 bedrooms',
+					price: '£2,230,800',
+					status: true,
+				},
+				{
+					id: 9,
+					image:
+						'https://i.pinimg.com/originals/b0/1a/95/b01a95d81dac8df775b821fb15a02305.jpg',
+					address: '4, Bolla Road, Portsmouth, P12 8EH',
+					bedrooms: '5 bedrooms',
+					price: '£1,290,800',
+					status: true,
+				},
+				{
+					id: 10,
+					image:
+						'https://i.pinimg.com/originals/33/4d/f2/334df2ad790ea01bf7f2230a6750d67a.jpg',
+					address: '127, Debdale Avenue, Leeds, L34 2YE',
+					bedrooms: '8 bedrooms',
+					price: '£2,580,800',
 					status: false,
 				},
 			])

@@ -22,10 +22,10 @@ To run tests:
 
 ### Improvements
 
-If I had more time to do this project, I would add error handling for cases such as API fetching failures. I would return a human readable message that made it clear to the user what the failure was.
+If I had more time to do this project, I would add error handling for scenarios such as API fetching failures. I would return a human readable message that makes it clear to the user what the failure is.
 
 I would style the page further to show more of my css skills.
 
-I would make the app responsive so that it is functional on all device screen sizes.
+I would make the app responsive so that it is functional on all device sizes.
 
 I would also build a view with no filter so that the agent can see both active and expired listings together.
