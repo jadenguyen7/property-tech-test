@@ -85,7 +85,7 @@ const Card: FC = () => {
 						return property.status;
 					} else {
 						return !property.status;
-						// if (property.status === false) {
+						// if (property.status === true) {
 						// 	return true
 						// } else {
 						// 	return false
