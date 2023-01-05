@@ -41,7 +41,6 @@ const Card: FC = () => {
 		setProperties(newProperties);
 	};
 
-	// to stop the infinitive loop
 	useEffect(() => {
 		const getListings = async () => {
 			const response = await getAllListings();
@@ -63,7 +62,7 @@ const Card: FC = () => {
 					checked={isShowActive}
 					onChange={() => setIsShowActive(true)}
 				/>
-				<label htmlFor="active" className={styles.label}>
+				<label htmlFor="active" className={styles.FilterLabel}>
 					Active
 				</label>
 				<input
@@ -74,7 +73,7 @@ const Card: FC = () => {
 					checked={!isShowActive}
 					onChange={() => setIsShowActive(false)}
 				/>
-				<label htmlFor="expired" className={styles.label}>
+				<label htmlFor="expired" className={styles.FilterLabel}>
 					Expired
 				</label>
 			</div>
@@ -85,11 +84,6 @@ const Card: FC = () => {
 						return property.status;
 					} else {
 						return !property.status;
-						// if (property.status === true) {
-						// 	return true
-						// } else {
-						// 	return false
-						// }
 					}
 				})
 				.map((property: PropertyProps, i) => (

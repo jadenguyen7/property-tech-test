@@ -24,8 +24,10 @@ To run tests:
 
 If I had more time to do this project, I would add error handling for scenarios such as API fetching failures. I would return a human readable message that makes it clear to the user what the failure is.
 
-I would style the page further to show more of my css skills.
+I would style the page further to show more of my css skills. I would change the layout so that the list of properties are easier to view.
 
 I would make the app responsive so that it is functional on all device sizes.
 
-I would also build a view with no filter so that the agent can see both active and expired listings together.
+I would also build a view with no filter so that the agent is able to view both active and expired listings together.
+
+I would look into the `Manifest: Line: 1, column: 1, Syntax error.` error that is being returned in the console.

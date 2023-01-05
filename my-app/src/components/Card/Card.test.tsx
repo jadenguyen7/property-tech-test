@@ -12,23 +12,23 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('Card component', () => {
-	const waitForCardLoaded = async () => {
+	const waitForCardToBeLoaded = async () => {
 		const card = await screen.findByTestId('card-1');
 		expect(card).toBeInTheDocument();
 	};
 
 	test('renders', async () => {
 		render(<Card />);
-		await waitForCardLoaded();
+		await waitForCardToBeLoaded();
 
 		expect(
 			screen.getAllByRole('heading', { level: 3, name: 'Property 1' })
 		).toBeTruthy();
 	});
 
-	test('populated data correctly', async () => {
+	test('populates data correctly', async () => {
 		render(<Card />);
-		await waitForCardLoaded();
+		await waitForCardToBeLoaded();
 
 		expect(screen.getAllByRole('heading', { level: 3 })[0]).toHaveTextContent(
 			/Property 1/
@@ -51,7 +51,7 @@ describe('Card component', () => {
 
 	test('can toggle status', async () => {
 		render(<Card />);
-		await waitForCardLoaded();
+		await waitForCardToBeLoaded();
 
 		const card = screen.getByTestId('card-1');
 		expect(card).toBeInTheDocument();
