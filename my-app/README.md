@@ -1,4 +1,4 @@
-### Summary
+## Summary
 
 This is a simple React application that enables agents to manage property listings. The agent will be able to:
 
@@ -8,7 +8,7 @@ This is a simple React application that enables agents to manage property listin
 
 For the purpose of this project, I have fetched mock data using Mock Service Worker. The application is thoroughly tested with Jest tests.
 
-### Scripts
+## Scripts
 
 To start the app, navigate to `/my-app` and run:
 
@@ -20,7 +20,7 @@ To run tests:
 
 ### `npm test`
 
-### Improvements
+## Improvements
 
 If I had more time to do this project, I would add error handling for scenarios such as API fetching failures. I would return a human readable message that makes it clear to the user what the failure is.
 
