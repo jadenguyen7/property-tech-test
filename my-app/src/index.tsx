@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { setupWorker } from 'msw';
-import { getAllListingsHandler, putListingHandler } from './mocks/browser';
+import { getAllListingsHandler, putListingHandler } from './mocks/listings';
 
 if (process.env.NODE_ENV === 'development') {
 	const worker = setupWorker(...getAllListingsHandler, ...putListingHandler); // worker only works in browser env, tests are in node env

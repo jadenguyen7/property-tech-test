@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Card } from './Card';
 import { setupServer } from 'msw/node';
-import { getAllListingsHandler, putListingHandler } from '../../mocks/browser';
+import { getAllListingsHandler, putListingHandler } from '../../mocks/listings';
 
 // only want to setupServer in testing env, dont want it running in prod
 const server = setupServer(...getAllListingsHandler, ...putListingHandler);
