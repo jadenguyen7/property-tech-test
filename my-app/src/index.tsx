@@ -7,7 +7,7 @@ import { setupWorker } from 'msw';
 import { getAllListingsHandler, putListingHandler } from './mocks/listings';
 
 if (process.env.NODE_ENV === 'development') {
-	const worker = setupWorker(...getAllListingsHandler, ...putListingHandler); // worker only works in browser env, tests are in node env
+	const worker = setupWorker(...getAllListingsHandler, ...putListingHandler);
 	worker.start();
 }
 
@@ -19,8 +19,3 @@ root.render(
 		<App />
 	</BrowserRouter>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
