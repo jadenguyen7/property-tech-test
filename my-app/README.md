@@ -12,6 +12,10 @@ For the purpose of this project, I have fetched mock data using Mock Service Wor
 
 To start the app, navigate to `/my-app` and run:
 
+### `npm i`
+
+then
+
 ### `npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
